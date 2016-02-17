@@ -1,11 +1,15 @@
-heroku-buildpack-mkdocs
-=======================
+buildpack-mkdocs
+================
 
-This is a heroku buildpack for MkDocs (heavily based upon the
+This is a buildpack for MkDocs (heavily based upon the
 [Pelican build-pack](https://github.com/getpelican/heroku-buildpack-pelican)).
+This buildpack may be used with any supporting platform (Heroku, Flynn, etc).
 
 ```bash
-$ heroku config:set BUILDPACK_URL=https://github.com/waldocollective/heroku-buildpack-mkdocs
+# Heroku:
+heroku config:set BUILDPACK_URL=https://github.com/waldocollective/heroku-buildpack-mkdocs
+# Flynn:
+flynn env set BUILDPACK_URL=https://github.com/getpelican/heroku-buildpack-pelican
 ```
 
 ## Configuration
@@ -13,8 +17,11 @@ $ heroku config:set BUILDPACK_URL=https://github.com/waldocollective/heroku-buil
 To allow this buildpack to redirect any secondary domains, you can define the
 environmental variable `MKDOCS_SITEURL`.
 
-```heroku
-$ heroku config:set MKDOCS_SITEURL=http://www.mkdocs.org
+```bash
+# Heroku:
+heroku config:set MKDOCS_SITEURL=http://www.mkdocs.org
+# Flynn:
+flynn env set MKDOCS_SITEURL=http://www.mkdocs.org
 ```
 
 Now any requests to `http://mkdocs.herokuapp.com` or `http://mkdocs.org` will redirect to the `SITEURL`.
