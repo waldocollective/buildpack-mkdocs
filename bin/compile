@@ -48,25 +48,20 @@ if [[ -f requirements.txt ]]; then
   puts-step "Installing dependencies using pip"
   python -m pip install --quiet -r requirements.txt | indent
 else
-  puts-step "Installing Pelican"
-  python -m pip install --quiet pelican | indent
-
-  puts-step "Installing Markdown"
-  python -m pip install --quiet Markdown | indent
+  puts-step "Installing MkDocs"
+  python -m pip install --quiet mkdocs | indent
 fi
 
-puts-step "Running pelican"
+puts-step "Running MkDocs"
 
-if [[ -f publishconf.py ]]; then
-  CONFIG_FILE="publishconf.py"
-elif [[ -f pelicanconf.py ]]; then
-  CONFIG_FILE="pelicanconf.py"
+if [[ -f mkdocs.yml ]]; then
+  CONFIG_FILE="mkdocs.yml"
 else
-  puts-warn "A pelicanconf.py or publishconf.py file is required."
+  puts-warn "A mkdocs.yml file is required."
   exit 1
 fi
 
-pelican -d -o $BUILD_DIR/public -s $CONFIG_FILE $BUILD_DIR/content | indent
+mkdocs build -c -d $BUILD_DIR/public -f $CONFIG_FILE | indent
 
 puts-step "Installing pcre ($PCRE_VERSION)"
 if [[ ! -d "$CACHE_DIR/$PCRE_VERSION" ]]; then
@@ -101,4 +96,3 @@ fi
 
 cp $ROOT_DIR/conf/mime.types $BUILD_DIR/
 cp $BIN_DIR/launch-nginx "$BUILD_DIR/local/sbin"
-
