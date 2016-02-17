@@ -7,9 +7,9 @@ This buildpack may be used with any supporting platform (Heroku, Flynn, etc).
 
 ```bash
 # Heroku:
-heroku config:set BUILDPACK_URL=https://github.com/waldocollective/heroku-buildpack-mkdocs
+heroku config:set BUILDPACK_URL=https://github.com/waldocollective/buildpack-mkdocs
 # Flynn:
-flynn env set BUILDPACK_URL=https://github.com/getpelican/heroku-buildpack-pelican
+flynn env set BUILDPACK_URL=https://github.com/waldocollective/buildpack-pelican
 ```
 
 ## Configuration
